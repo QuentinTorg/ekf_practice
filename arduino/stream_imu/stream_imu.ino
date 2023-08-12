@@ -106,14 +106,18 @@ void setup()
 void loop()
 {
   IMU.update();
+  const auto now = micros();
   IMU.getAccel(&accelData);
+  IMU.getGyro(&gyroData);
+
+  Serial.print(now);
+  Serial.print("\t");
   Serial.print(accelData.accelX);
   Serial.print("\t");
   Serial.print(accelData.accelY);
   Serial.print("\t");
   Serial.print(accelData.accelZ);
   Serial.print("\t");
-  IMU.getGyro(&gyroData);
   Serial.print(gyroData.gyroX);
   Serial.print("\t");
   Serial.print(gyroData.gyroY);
