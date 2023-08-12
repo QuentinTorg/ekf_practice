@@ -38,22 +38,19 @@ void setup()
 
 #ifdef PERFORM_CALIBRATION
   Serial.println("FastIMU calibration & data example");
+  delay(1000);
   if (IMU.hasMagnetometer())
   {
-    delay(1000);
     Serial.println("Move IMU in figure 8 pattern until done.");
-    delay(3000);
+    delay(1000);
     IMU.calibrateMag(&calib);
     Serial.println("Magnetic calibration done!");
-  }
-  else
-  {
-    delay(5000);
+    delay(1000);
   }
 
-  delay(5000);
   Serial.println("Keep IMU level.");
-  delay(5000);
+  delay(1000);
+  Serial.println("Starting Accel/Gyro calibration");
   IMU.calibrateAccelGyro(&calib);
   Serial.println("Calibration done!");
   Serial.println("Accel biases X/Y/Z: ");
@@ -85,7 +82,6 @@ void setup()
     Serial.println(calib.magScale[2]);
   }
 
-  delay(5000);
   IMU.init(calib, IMU_ADDRESS);
 #endif
 
@@ -140,5 +136,4 @@ void loop()
 	  Serial.print("\t");
 	  Serial.println(IMU.getTemp());
   }
-  delay(50);
 }
